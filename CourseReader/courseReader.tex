@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+
+%\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath,stackrel}
+\usepackage{lscape}
+\usepackage[colorlinks]{hyperref}
+\usepackage{subeqnarray}
+\usepackage{chemfig}
+\usepackage{subfigure}
+\usepackage{subfigmat}
+\usepackage{cite}
+\usepackage{subeqnarray}
+\usepackage[bf,small]{caption}
+\usepackage{slashbox}
+\usepackage{enumitem}
+
+\usepackage[nameinlink, capitalize]{cleveref}
+\crefname{table}{Tab.}{Tabs.}
+\crefname{section}{Sec.}{Secs.}
+%\crefname{figure}{Figure}{Figures}
+
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\counterwithin{equation}{section}
+\makeatletter
+\renewcommand\p@subfigure{\thefigure}
+\makeatother
+
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+
+\usepackage{pifont}
+
+\renewcommand{\contentsname}{\LARGE Contents}
+\newcommand{\crefrangeconjunction}{--}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{calc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addtolength{\voffset}{-1in}
+\addtolength{\hoffset}{-1in}
+\setlength{\topmargin}{2.5cm}
+\setlength{\oddsidemargin}{2.5cm}
+\setlength{\evensidemargin}{2.5cm}
+\setlength{\textwidth}{\paperwidth - 5cm}
+\setlength{\textheight}{\paperheight - 8cm}
+\setlength{\footskip}{36pt}
+\setlength{\marginparsep}{0.5cm}
+\setlength{\marginparwidth}{1.5cm}
+\setlength{\headheight}{0.6 in}
+\setlength{\headsep}{0.2 in}
+
+\usepackage{floatrow}
+\newfloatcommand{capbtabbox}{table}[][1.4\FBwidth]
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\renewcommand{\refname}{\vspace{-8mm}}
+
+\captionsetup[figure]{labelsep=quad}
+\captionsetup[table]{labelsep=quad}
+%\renewcommand\tablename{Tab.}
+
+\usepackage{chemfig}
+
+\graphicspath{{Figures/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{-- Course Reader --\\
+ME 257/357: Propulsion System and Gas-Turbine Analysis\\
+{\small \it(Version 2.0)}}
+\author{Matthias Ihme\\
+Stanford University}
+\setcounter{section}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\input{abbrevs}
+
+\maketitle
+\vfill
+\begin{center}
+\textcopyright~mihme@stanford.edu
+\end{center}
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{page}{1}
+\pagenumbering{roman}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\input{references}\clearpage
+\input{nomenclature}\clearpage
+\input{sectionIntroduction}\clearpage
+\input{sectionAerodynamicsAircraftPerformance}\clearpage
+\input{sectionAltitudeEffects}\clearpage
+\input{sectionThermodynamics}\clearpage
+\input{sectionAircraftJetEngines}\clearpage
+%\input{sectionCombustion}\clearpage
+%\input{sectionICEngines}\newpage
+%\input{sectionRocketPropulsion}\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bibliography}
+%\addcontentsline{toc}{section}{References}
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

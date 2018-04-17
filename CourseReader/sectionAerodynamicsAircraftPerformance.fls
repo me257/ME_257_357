@@ -1,0 +1,10 @@
+PWD /Users/qingwang/Documents/coursework/ME_257_357/course_reader
+INPUT /usr/local/texlive/2015/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT sectionAerodynamicsAircraftPerformance.tex
+OUTPUT sectionAerodynamicsAircraftPerformance.log
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+OUTPUT sectionAerodynamicsAircraftPerformance.pdf
+INPUT /usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map
