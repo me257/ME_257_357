@@ -282,10 +282,10 @@ With the adiabatic efficiency
 \eta_T = \f{h_{04}-h_{05}}{h_{04}-h_{05s}} = \f{\f{T_{05}}{T_{04}}-1}{\f{T_{05s}}{T_{04}}-1}\,,
 \end{equation}
 we have
-\begin{eqnarray}
-\f{T_{05s}}{T_{04}} &=& 1+\f{1}{\eta_T} \left( \frac{T_{05}}{T_{04}}-1 \right)\,,\\
-\f{p_{05}}{p_{04}} &=& \left(\f{T_{05s}}{T_{04}}\right)^\f{\gamma^T}{\gamma^T-1} = \left[ 1+\eta_T \left( \f{T_{05}}{T_{04}}-1 \right) \right]^\f{\gamma^T}{\gamma^T-1}\,.
-\end{eqnarray}
+\begin{align}
+\f{T_{05s}}{T_{04}} &= 1+\f{1}{\eta_T} \left( \frac{T_{05}}{T_{04}}-1 \right)\,,\\
+\f{p_{05}}{p_{04}} &= \left(\f{T_{05s}}{T_{04}}\right)^\f{\gamma^T}{\gamma^T-1} = \left[ 1+\eta_T \left( \f{T_{05}}{T_{04}}-1 \right) \right]^\f{\gamma^T}{\gamma^T-1}\,. \label{eq:p05_over_p04}
+\end{align}
 \item Nozzle exit condition: From enthalpy conservation
 \begin{eqnarray}
 \f{1}{2}u_e^2 &=& h_{05} - h_e = \eta_p(h_{05}-h_{es})\,,\\
@@ -385,18 +385,22 @@ T_{018} &=& T_{02}\left[1+\f{1}{\eta_F}\left(\pi_F^\f{\gamma_F-1}{\gamma_F}-1\ri
 \end{equation}
 \item Turbine exit condition: Considering work-balance between compressor and turbine provides a relation to evaluate the turbine work that is required to drive the compressor and fan:
 \begin{equation}
-(\dot{m}_{A,C}+\dot{m}_F)c_p^T (T_{05}-T_{04}) = -\dot{m}_{A,C} c_p^C (T_{03}-T_{02}) -\dot{m}_{A,B} c_p^F (T_{08}-T_{02})\,.
+(\dot{m}_{A,C}+\dot{m}_F)c_p^T (T_{05}-T_{04}) = -\dot{m}_{A,C} c_p^C (T_{03}-T_{02}) -\dot{m}_{A,B} c_p^F (T_{018}-T_{02})\,.
 \end{equation}
 With $\beta = \dot{m}_{A,B}/\dot{m}_{A,C}$, we can simplify:
 \begin{eqnarray}
-(1+f) c_p^T (T_{05}-T_{04}) &=& - c_p^C (T_{03}-T_{02}) -\beta c_p^F (T_{08}-T_{02})\,,\\
-T_{05} &=& T_{04} - \f{c_p^C(T_{03}-T_{02}) + \beta c_p^F (T_{08}-T_{02})}{(1+f)c_p^T}\,,
+(1+f) c_p^T (T_{05}-T_{04}) &=& - c_p^C (T_{03}-T_{02}) -\beta c_p^F (T_{018}-T_{02})\,,\\
+T_{05} &=& T_{04} - \f{c_p^C(T_{03}-T_{02}) + \beta c_p^F (T_{018}-T_{02})}{(1+f)c_p^T}\,,
 \end{eqnarray}
 with $f \sim 0$ and $c_p = c_p^T = c_p^C$, we have
-\begin{eqnarray}
-T_{05} &=& T_{04} - (T_{03}-T_{02})-\beta(T_{08}-T_{02})\,,\\
-\f{p_{05}}{p_{04}} &=& \left[1+\f{1}{\eta_T}\left(\f{T_{05}}{T_{04}}-1\right)^\f{\gamma_T}{\gamma_T-1}\right]\,.
-\end{eqnarray}
+\begin{equation}
+	T_{05} = T_{04} - (T_{03}-T_{02})-\beta(T_{018}-T_{02}).
+\end{equation}
+The pressure at the turbine exit can be obtained using the same expression as shown in~\cref{eq:p05_over_p04} for the turbojet.
+% \begin{eqnarray}
+% T_{05} &=& T_{04} - (T_{03}-T_{02})-\beta(T_{08}-T_{02})\,,\\
+% \f{p_{05}}{p_{04}} &=& \left[1+\f{1}{\eta_T}\left(\f{T_{05}}{T_{04}}-1\right)^\f{\gamma_T}{\gamma_T-1}\right]\,.
+% \end{eqnarray}
 \item Nozzle exit condition:
 \[
   u_e = \sqrt{2 \eta_N c_p^N T_{05} \left[ 1 - \left(\f{p_{es}}{p_{05}}\right)^\f{\gamma_N-1}{\gamma_N}\right]}\,,
