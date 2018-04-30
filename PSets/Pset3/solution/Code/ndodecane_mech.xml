@@ -7,7 +7,8 @@
     <elementArray datasrc="elements.xml">H C O N Ar</elementArray>
     <speciesArray datasrc="#species_data">
       h2o      o2       n2       nc12h26  co2      co
-      ar       c</speciesArray>
+      ar       no       o        c        oh       h
+      o3       n        hcn      cn       nco      ch</speciesArray>
     <state>
       <temperature units="K">300.0</temperature>
       <pressure units="Pa">101325.0</pressure>
@@ -146,6 +147,42 @@
       </thermo>
     </species>
 
+    <!-- u'    species no    ' -->
+    <species name="no">
+      <atomArray>O:1 N:1 </atomArray>
+      <note>u'121286'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             3.376542000E+00,   1.253063000E-03,  -3.302751000E-06,   5.217810000E-09, 
+             -2.446263000E-12,   9.817961000E+03,   5.829590000E+00</floatArray>
+        </NASA>
+        <NASA Tmax="5000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             3.245435000E+00,   1.269138000E-03,  -5.015890000E-07,   9.169283000E-11, 
+             -6.275419000E-15,   9.800840000E+03,   6.417294000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species o    ' -->
+    <species name="o">
+      <atomArray>O:1 </atomArray>
+      <note>u'120186'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.946429000E+00,  -1.638166000E-03,   2.421032000E-06,  -1.602843000E-09, 
+             3.890696000E-13,   2.914764000E+04,   2.963995000E+00</floatArray>
+        </NASA>
+        <NASA Tmax="5000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.542060000E+00,  -2.755062000E-05,  -3.102803000E-09,   4.551067000E-12, 
+             -4.368052000E-16,   2.923080000E+04,   4.920308000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
     <!-- u'    species c    ' -->
     <species name="c">
       <atomArray>C:1 </atomArray>
@@ -160,6 +197,150 @@
            <floatArray name="coeffs" size="7">
              2.602087000E+00,  -1.787081000E-04,   9.087041000E-08,  -1.149933000E-11, 
              3.310844000E-16,   8.542154000E+04,   4.195177000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species oh    ' -->
+    <species name="oh">
+      <atomArray>H:1 O:1 </atomArray>
+      <note>u'121286'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             3.637266000E+00,   1.850910000E-04,  -1.676165000E-06,   2.387203000E-09, 
+             -8.431442000E-13,   3.606782000E+03,   1.358860000E+00</floatArray>
+        </NASA>
+        <NASA Tmax="5000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.882730000E+00,   1.013974000E-03,  -2.276877000E-07,   2.174684000E-11, 
+             -5.126305000E-16,   3.886888000E+03,   5.595712000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species h    ' -->
+    <species name="h">
+      <atomArray>H:1 </atomArray>
+      <note>u'120186'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+        <NASA Tmax="5000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species o3    ' -->
+    <species name="o3">
+      <atomArray>O:3 </atomArray>
+      <note>u'121286'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.462609000E+00,   9.582781000E-03,  -7.087359000E-06,   1.363368000E-09, 
+             2.969647000E-13,   1.606152000E+04,   1.214187000E+01</floatArray>
+        </NASA>
+        <NASA Tmax="5000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             5.429371000E+00,   1.820380000E-03,  -7.705607000E-07,   1.499293000E-10, 
+             -1.075563000E-14,   1.523527000E+04,  -3.266387000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species n    ' -->
+    <species name="n">
+      <atomArray>N:1 </atomArray>
+      <note>u'120186'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.503071000E+00,  -2.180018000E-05,   5.420529000E-08,  -5.647560000E-11, 
+             2.099904000E-14,   5.609890000E+04,   4.167566000E+00</floatArray>
+        </NASA>
+        <NASA Tmax="5000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.450268000E+00,   1.066146000E-04,  -7.465337000E-08,   1.879652000E-11, 
+             -1.025984000E-15,   5.611604000E+04,   4.448758000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species hcn    ' -->
+    <species name="hcn">
+      <atomArray>H:1 C:1 N:1 </atomArray>
+      <note>u'110193'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.417787000E+00,   9.031856000E-03,  -1.107727000E-05,   7.980141000E-09, 
+             -2.311141000E-12,   1.501044000E+04,   8.222891000E+00</floatArray>
+        </NASA>
+        <NASA Tmax="4000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             3.426457000E+00,   3.924190000E-03,  -1.601138000E-06,   3.161966000E-10, 
+             -2.432850000E-14,   1.485552000E+04,   3.607795000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species cn    ' -->
+    <species name="cn">
+      <atomArray>C:1 N:1 </atomArray>
+      <note>u'121286'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             3.663204000E+00,  -1.156529000E-03,   2.163409000E-06,   1.854208000E-10, 
+             -8.214695000E-13,   5.128118000E+04,   3.739016000E+00</floatArray>
+        </NASA>
+        <NASA Tmax="5000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             3.720120000E+00,   1.518351000E-04,   1.987381000E-07,  -3.798371000E-11, 
+             1.328230000E-15,   5.111626000E+04,   2.888597000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species nco    ' -->
+    <species name="nco">
+      <atomArray>C:1 O:1 N:1 </atomArray>
+      <note>u'110193'</note>
+      <thermo>
+        <NASA Tmax="1400.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             3.359593000E+00,   5.393239000E-03,  -8.144585000E-07,  -1.912868000E-09, 
+             7.836794000E-13,   1.462809000E+04,   6.549694000E+00</floatArray>
+        </NASA>
+        <NASA Tmax="4000.0" Tmin="1400.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             6.072346000E+00,   9.227829000E-04,  -9.845574000E-08,  -4.764123000E-11, 
+             9.090445000E-15,   1.359820000E+04,  -8.507293000E+00</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- u'    species ch    ' -->
+    <species name="ch">
+      <atomArray>H:1 C:1 </atomArray>
+      <note>u'121286'</note>
+      <thermo>
+        <NASA Tmax="1000.0" Tmin="300.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             3.200202000E+00,   2.072876000E-03,  -5.134431000E-06,   5.733890000E-09, 
+             -1.955533000E-12,   7.045259000E+04,   3.331588000E+00</floatArray>
+        </NASA>
+        <NASA Tmax="5000.0" Tmin="1000.0" P0="100000.0">
+           <floatArray name="coeffs" size="7">
+             2.196223000E+00,   2.340381000E-03,  -7.058201000E-07,   9.007582000E-11, 
+             -3.855040000E-15,   7.086723000E+04,   9.178373000E+00</floatArray>
         </NASA>
       </thermo>
     </species>
