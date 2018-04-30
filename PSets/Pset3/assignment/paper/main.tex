@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage{psfrag}
+\usepackage{color}
+\usepackage[colorlinks]{hyperref}
+\usepackage[footnotesize,hang,bf]{caption}
+\usepackage{subeqnarray}
+% \usepackage{amsthm}
+ \usepackage{enumitem}
+ \graphicspath{{../Figures/}}
+ \usepackage{multicol}
+ \usepackage{ marvosym }
+ \usepackage{wasysym}
+ \usepackage{tikz}
+ \usetikzlibrary{patterns}
+
+ \newcommand{\ds}{\displaystyle}
+ \DeclareMathOperator{\sech}{sech}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\hwnum{3}
+\def\term{Spring 2018}
+
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\topmargin}{0.0 in}
+\setlength{\textwidth}{6.45 in}
+\setlength{\textheight}{8.5 in}
+%\setlength{\headheight}{1 in}
+\renewcommand{\baselinestretch}{0.95}
+
+\pagestyle{fancy}
+\rhead{ME 257/357\\ \term \\Problem Set \#\hwnum }
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+
+\begin{center}
+{\Large\bf ME 257/357 Gas Turbine Design: Problem Set \#\hwnum\\
+       Due: Thursday, 5/19/2017 (before lecture)}
+\end{center}
+
+%=======================================================================================================
+Before solving this problem set, outline the approach you want to follow. Provide all solution steps, and clearly mark your solution. Start with the general formulation, and simplify all expressions as much as possible. Plug in all numbers only at the end. Make and state necessary assumptions that you
+think are required for solving the problem. You are encouraged to discuss the approach you want to follow on a conceptual level in groups; however, you have to submit your own write-up, plots, and non-trivial source code.
+\\
+\hrule
+%=======================================================================================================
+\vspace{2mm}
+\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\section{Turbofan with a Combustion Model}
+
+We will now incorporate the combustion analysis from Problem 1 of Homework 2 into our real turbofan model. Working with the turbofan code developed in Homework 1, we will replace the simple ``combustor model” (which was really just a specified temperature $T_{04}$) with a function that will actually calculate the adiabatic flame temperature. Unless otherwise specified, the engine design parameters are exactly that provided for the real turbofan model from Homework 1.
+
+The final result will be a more realistic turbofan analysis that, given operating conditions and sea level air mass flow through core, will compute the turbine inlet temperature, $T_{04}\approx T_{4}$, and the thrust.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Complete the the function \emph{combustor}, which utilizes cantera to model the combustor as a constant enthalpy-pressure (HP) reactor. If you did not use cantera for Homework 2, directions on how to install the MATLAB module can be found at \href{http://www.cantera.org/docs/sphinx/html/install.html}{www.cantera.org} and are provided during office hours.
+    
+    \item Using the combustor model from part a, 
+    \begin{enumerate}[label=(\roman*)]
+    	\item
+        	Complete the function \emph{realTurbofanThrust} and plot the thrust of the real turbofan as a function of equivalence ratio, $\phi\in[0.15,5.0]$, at an altitude of 0, 30,000 and 43,000 ft and the corresponding minimum drag velocities: 90, 150, and 200 m/s, respectively. There should be a total of three curves on one figure. At which equivalence ratio is thrust optimized for each altitude? Why would thrust peak near these equivalence ratios?
+    	\item 
+        	Now, compute and plot the ratio of the outlet temperature of the combustor to the maximum turbine inlet temperature (i.e., $T_4/T_{4,\mathrm{max}}=T_4/1600$ K) as a function equivalence ratio, $\phi\in[0.15,10.0]$, at an altitude of 0, 30,000 and 43,000 ft and the corresponding minimum drag velocities: 90, 150, and 200 m/s, respectively. There should be a total of three curves in one figure. At which equivalence ratios does $T_4/T_{4,\mathrm{max}}=1$? Based on your thrust results, is this optimal? 
+    \end{enumerate}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\section{Cruise Conditions for the HondaJet}
+Consider the HondaJet in cruise conditions. We already developed the drag (or thrust required) as a function of altitude and speed in Homework 1. We will now use those results and incorporate the more realistic combustor model to evaluate fuel consumption and range; we will simplify the analysis to consider only the fuel consumption during cruise. We can adjust the throttle to change the amount of fuel supplied to combustion, but this has very little effect on the mass flow rate of air through the engine.
+
+\begin{enumerate}[label=(\alph*)]
+	\item 
+		Clearly identify and state which quantities from the previous modeling of the real turbofan are to be used here and which ones will change or be calculated in functions rather than needing to be specified.
+	\item 
+		For the HondaJet (parameters given in Homework 1), complete the function \emph{fuelMassFlow} that 1) takes inputs of altitude, speed, and weight and 2) determines the fuel mass flow rate needed to produce the required amount of thrust. This will be an iterative process to match thrust required and thrust available (Hint: consider using the MATLAB function ``fzero").
+	\item 
+		Assume the HondaJet starts cruise at maximum takeoff weight and flies at constant altitude and speed: 30,000 ft and 150 m/s. Write a simple ODE expressing the time rate of change of the aircraft weight and its relation to fuel mass flow rate. On which variables does fuel mass flow rate depend?
+	\item 
+		Solve (numerically) the ODE for aircraft weight as a function of time. What is the range, assuming all fuel is consumed?
+	\item 
+		How does this result differ from the range found using the Breguet range equation? Why? What assumptions are made in the derivation of the Breguet range equation that would not necessarily be applicable under these operating conditions?		
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+\section{Nitric Oxide Formation}
+Nitric oxide (NO) is a pollutant known to contribute to the formation of acid rain and the depletion of the ozone layer. Hence, the emissions of nitric oxide are tightly regulated and are an important design consideration of gas-turbine engines. In this problem, we will explore the production of NO during the combustion process and use it to motivate the use of RQL combustors, which were explored in Homework 2.
+
+The Committee on Aviation and Environmental Protection (CAEP), regulates the emissions of NO from aircraft during the take-off and landing phases of the engine's flight cycle. For the Honda Jet, an estimate of the CAEP emissions standards give $\dot{m}_\mathrm{NO,max}=$0.04 g/s. We will use the conditions at sea level to approximate the operational conditions during take-off and landing. 
+
+\begin{enumerate}[label=(\alph*)]
+	\item First, we will investigate the equilibrium concentration of NO in a standard combustor (i.e., no dilution holes). Using the combustor model developed in Problem 1, an altitude of 0 ft, and a corresponding speed, $U_\infty = U_0 = 90$ m/s, plot the ratio of the mass production of nitric oxide to the CAEP standard, $\dot{m}_\mathrm{NO}/\dot{m}_\mathrm{NO,max}$, against the equivalence ratio, $\phi\in[0.15,5.0]$. You should plot one curve for this part. At which equivalence ratio does the mass production of NO meet the standard? What issues may arise from operating at this condition? 
+    \item
+    	Now, we will investigate the RQL combustion strategy.
+        \begin{enumerate}[label=(\roman*)]
+        	\item
+            	The formation of thermal NO is a slow process with respect to the primary combustion and is principally formed in the burned gas subsequent to combustion. With this in mind, the production rate of thermal NO may be estimated using the equation:
+                \begin{equation}
+                	\frac{\mathrm{d} \dot{m}_\mathrm{NO}}{\mathrm{d}t} = k\dot{m}_{\mathrm{N_2}}\dot{m}_{\mathrm{O}}
+                \end{equation}
+                where $k$ is the reaction-rate evaluated at $T_4=1600$ K, $\dot{m}_{\mathrm{N_2}}$ is the mass flow rate of nitrogen, and $\dot{m}_{\mathrm{O}}$ is the mass flow rate of the oxygen radical. Given $k=2.66\ \mathrm{kg}^{-1}$, $\dot{m}_{\mathrm{N_2}}=0.403$ kg/s,  $\dot{m}_{\mathrm{O}}=3.15\times 10^{-7}$ kg/s, and $U_4=11.8$ m/s, determine the maximum dilution distance, $L_\mathrm{dil}$, such than no more NO is produced than required by the CAEP standard. Based on this distance, does it seem feasible to dilute the burned gas before significant NO is produced?
+        	\item
+            	Now we will model the combustion process in a RQL combustor with three zones:
+                \begin{enumerate}[label=(\arabic*)]
+                	\item 
+                    	\textbf{Rich Burn}: In this portion of the combustor, the core gas, which was not rerouted to the dilution holes, has been mixed with the fuel and is combusted. This portion of the combustor will be modeled as in Problem 1 with constant HP equilibration in cantera.
+                    \item
+                        \textbf{Quenching and Dilution}: Subsequently to the rich burn, the mixture is quenched by the dilution holes. This quenching will be modeled by simply setting the equilibrium mass flow of NO from the rich burn section to zero and renormalizing such that the same net mass flow is retained. Additionally, the rerouted, uncombusted air at an enthalpy of $h=h_3$ and composition $\dot{m}_i=\dot{m}_{i,3}$ is mixed with the combusted gas.
+                    \item
+                        \textbf{Lean Burn}: The diluted products of the rich burn are now equilibrated to the final composition. As with the rich burn, this will be done in cantera with constant HP equilibration.
+                \end{enumerate}
+        Implement the preceding model using cantera in MATLAB (function \emph{RQLCombustor}). Using the same plot as in Part a, an altitude of 0 ft, and a corresponding speed, $U_\infty = U_0 = 90$ m/s, plot the ratio of the mass production of nitric oxide to the CAEP standard, $\dot{m}_\mathrm{NO}/\dot{m}_\mathrm{NO,max}$, against the equivalence ratio, $\phi\in[0.15,5.0]$, for the reroute ratios $\beta_\mathrm{c}\in\{1,5,10\}$. Your plot for this problem should now have four curves. Recall from Homework 2 that the reroute ratio was defined as the ratio of air directed to the dilution holes to that directly into the combustor, $\beta_\mathrm{c}=\dot{m}_{a2}/\dot{m}_{a1}$. Using the RQL combustor design, are emissions still a limiting factor for engine performance?
+        \end{enumerate}
+	\item
+    	Empirical correlations are often utilized in industry in the initial design stages to estimate the production of $\mathrm{NO}_x$. They are useful for allowing an engineer to iterate through a design in a fast-pace manner without the time or cost associated with high-fidelity simulation or experiment. One such correlation for lean, homogeneous combustion~\cite{LEWIS_1991} is given by
+        \begin{equation}
+        	x_{\mathrm{NO}_x} = 3.32\times 10^{-12}\exp(0.008 T_4)p_4^{0.5}
+        \end{equation}
+        where $x_{\mathrm{NO}_x}$ is the mole fraction of $\mathrm{NO}_x$. Assume that $\mathrm{NO}_x$ primarily consists of nitric oxide, and compute $\dot{m}_\mathrm{NO}$ for the real turbofan at an altitude of 0 ft, and a corresponding speed, $U_\infty = U_0 = 90$ m/s. Does this model show that the Honda Jet would meet the CAEP emissions standards? Why might this correlation show discrepancies with our combustor models?
+\end{enumerate}
+%=======================================================================================================
+\bibliographystyle{unsrt}
+\bibliography{references}
+%=======================================================================================================
+\end{document}
