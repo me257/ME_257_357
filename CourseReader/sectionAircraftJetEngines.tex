@@ -284,7 +284,7 @@ With the adiabatic efficiency
 we have
 \begin{align}
 \f{T_{05s}}{T_{04}} &= 1+\f{1}{\eta_T} \left( \frac{T_{05}}{T_{04}}-1 \right)\,,\\
-\f{p_{05}}{p_{04}} &= \left(\f{T_{05s}}{T_{04}}\right)^\f{\gamma^T}{\gamma^T-1} = \left[ 1+\eta_T \left( \f{T_{05}}{T_{04}}-1 \right) \right]^\f{\gamma^T}{\gamma^T-1}\,. \label{eq:p05_over_p04}
+\f{p_{05}}{p_{04}} &= \left(\f{T_{05s}}{T_{04}}\right)^\f{\gamma^T}{\gamma^T-1} = \left[ 1+\frac{1}{\eta_T} \left( \f{T_{05}}{T_{04}}-1 \right) \right]^\f{\gamma^T}{\gamma^T-1}\,. \label{eq:p05_over_p04}
 \end{align}
 \item Nozzle exit condition: From enthalpy conservation
 \begin{eqnarray}
@@ -302,11 +302,11 @@ For the performance analysis, we are mostly interested in the following two para
 \begin{itemizePacked}
 \item Specific thrust:
 \begin{equation}
-  \f{T}{\dot{m}_A} = [(1+f)U_C - U_0]\,;
+  \f{T}{\dot{m}_A} = [(1+f)U_e - U_0]\,;
 \end{equation}
 \item Specific fuel consumption:
 \begin{equation}
-  \f{\dot{m}_F}{T} = \f{f}{[(1+f)U_C-U_0]}\,.
+  \f{\dot{m}_F}{T} = \f{f}{[(1+f)U_e-U_0]}\,.
 \end{equation}
 \end{itemizePacked}
 
@@ -360,11 +360,11 @@ For a turboprop engine or unducted fan-engine, we obtain the highest bypass rati
 
 Recall the thrust equation for a turbofan engine (\cref{FIG_TURBOFAN_ANALYSIS})
 \begin{equation}
-   T = \dot{m}_{A\,,C} \left[ (1+f) U_e + \beta U_{1e} - (1-\beta) U_0 \right] \, \text{.}
+   T = \dot{m}_{A\,,C} \left[ (1+f) U_e + \beta U_{1e} - (1+\beta) U_0 \right] \, \text{.}
 \end{equation}
 We have
 \begin{equation}
-  \text{TSFC} = \f{\dot{m}_F}{T} = \f{f}{(1+f)U_e+\beta U_{1e} - (1-\beta)U_0}\,.
+  \text{TSFC} = \f{\dot{m}_F}{T} = \f{f}{(1+f)U_e+\beta U_{1e} - (1+\beta)U_0}\,.
 \end{equation}
 
 The analysis of a turbofan engine follows that of the turbojet engine with some additional component analysis:
