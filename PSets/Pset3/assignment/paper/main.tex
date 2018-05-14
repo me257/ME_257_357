@@ -41,7 +41,7 @@
 
 \begin{center}
 {\Large\bf ME 257/357 Gas Turbine Design: Problem Set \#\hwnum\\
-       Due: Thursday, 5/19/2017 (before lecture)}
+       Due: Thursday, 5/17/2018 (before lecture)}
 \end{center}
 
 %=======================================================================================================
@@ -72,7 +72,7 @@ The final result will be a more realistic turbofan analysis that, given operatin
 \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 \section{Cruise Conditions for the HondaJet}
-Consider the HondaJet in cruise conditions. We already developed the drag (or thrust required) as a function of altitude and speed in Homework 1. We will now use those results and incorporate the more realistic combustor model to evaluate fuel consumption and range; we will simplify the analysis to consider only the fuel consumption during cruise. We can adjust the throttle to change the amount of fuel supplied to combustion, but this has very little effect on the mass flow rate of air through the engine.
+Consider the HondaJet in cruise conditions. We already developed the drag (or thrust required) as a function of altitude and speed in Homework 1. We will now use those results and incorporate the more realistic combustor model to evaluate fuel consumption and range; we will simplify the analysis to consider only the fuel consumption during cruise. We can adjust the throttle to change the amount of fuel supply, but this has very little effect on the mass flow rate of air through the engine.
 
 \begin{enumerate}[label=(\alph*)]
 	\item 
@@ -109,7 +109,7 @@ The Committee on Aviation and Environmental Protection (CAEP), regulates the emi
                 	\item 
                     	\textbf{Rich Burn}: In this portion of the combustor, the core gas, which was not rerouted to the dilution holes, has been mixed with the fuel and is combusted. This portion of the combustor will be modeled as in Problem 1 with constant HP equilibration in cantera.
                     \item
-                        \textbf{Quenching and Dilution}: Subsequently to the rich burn, the mixture is quenched by the dilution holes. This quenching will be modeled by simply setting the equilibrium mass flow of NO from the rich burn section to zero and renormalizing such that the same net mass flow is retained. Additionally, the rerouted, uncombusted air at an enthalpy of $h=h_3$ and composition $\dot{m}_i=\dot{m}_{i,3}$ is mixed with the combusted gas.
+                        \textbf{Quenching and Dilution}: Subsequently to the rich burn, the mixture is quenched by the dilution holes. This quenching will be modeled by simply setting the equilibrium mass flow of NO from the rich burn section to zero and renormalizing such that the same net mass flow is retained. Additionally, the rerouted, uncombusted air at an enthalpy of $h=h_{03}$ and composition $\dot{m}_i=\dot{m}_{i,3}$ is mixed with the combusted gas.
                     \item
                         \textbf{Lean Burn}: The diluted products of the rich burn are now equilibrated to the final composition. As with the rich burn, this will be done in cantera with constant HP equilibration.
                 \end{enumerate}
@@ -118,9 +118,9 @@ The Committee on Aviation and Environmental Protection (CAEP), regulates the emi
 	\item
     	Empirical correlations are often utilized in industry in the initial design stages to estimate the production of $\mathrm{NO}_x$. They are useful for allowing an engineer to iterate through a design in a fast-pace manner without the time or cost associated with high-fidelity simulation or experiment. One such correlation for lean, homogeneous combustion~\cite{LEWIS_1991} is given by
         \begin{equation}
-        	x_{\mathrm{NO}_x} = 3.32\times 10^{-12}\exp(0.008 T_4)p_4^{0.5}
+        	X_{\mathrm{NO}_x} = 3.32\times 10^{-12}\exp(0.008 T_4)p_4^{0.5}
         \end{equation}
-        where $x_{\mathrm{NO}_x}$ is the mole fraction of $\mathrm{NO}_x$. Assume that $\mathrm{NO}_x$ primarily consists of nitric oxide, and compute $\dot{m}_\mathrm{NO}$ for the real turbofan at an altitude of 0 ft, and a corresponding speed, $U_\infty = U_0 = 90$ m/s. Does this model show that the Honda Jet would meet the CAEP emissions standards? Why might this correlation show discrepancies with our combustor models?
+        where $X_{\mathrm{NO}_x}$ is the mole fraction of $\mathrm{NO}_x$. Assume that $\mathrm{NO}_x$ primarily consists of nitric oxide, and compute $\dot{m}_\mathrm{NO}$ for the real turbofan at an altitude of 0 ft, and a corresponding speed, $U_\infty = U_0 = 90$ m/s. Does this model show that the Honda Jet would meet the CAEP emissions standards? Why might this correlation show discrepancies with our combustor models?
 \end{enumerate}
 %=======================================================================================================
 \bibliographystyle{unsrt}
