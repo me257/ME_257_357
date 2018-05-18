@@ -17,12 +17,14 @@ function mDotF = fuelMassFlow(UInf, altitude, aircraft, fluid)
     [~ , ~ , ~ , rho0] = atmosisa(altitude);
     [~ , ~ , ~ , rhoSeaLevel] = atmosisa(0.0);
     mDot = aircraft.engine.mDotSeaLevel*rho0/rhoSeaLevel; %mass flow rate of the core gas
-    Drag = thrustRequired(UInf,altitude,aircraft.airframe)/aircraft.engine.nEngines;
+    Drag = thrustRequired(UInf,altitude,aircraft.airframe);
     
     %compute the required equivalence ratio
     phi = fzero(@(phi) Drag  ...
-                - combustorThrust(phi,UInf, altitude, aircraft.engine, fluid),0.5);
-    
+                - real(combustorThrust(phi,UInf, altitude, aircraft.engine, fluid)),0.5);
+    if imag(combustorThrust(phi,UInf, altitude, aircraft.engine, fluid)~=0)
+        error('Complex Thrust Found');
+    end
     %compute the stoichiometric mass fraction
     nSp = nSpecies(fluid.gas);
     X3 = zeros(nSp,1);
@@ -110,26 +112,3 @@ function Thrust = combustorThrust(phi,UInf, altitude, engine, fluid)
     Thrust = Thrust.*engine.nEngines;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
-
-function T = thrustRequired(UInf,altitude,airframe)
-    % function: problemSet1_problem1a
-    % --------------------------------------------------------------------
-    % This function computes the required thrust.
-    %   Inputs:
-    %       altitude = The altitude. [m].
-    %       UInf = vector of the freestream velocities. [m/s]
-    %       airframe =  structure containing the necessary parameters of 
-    %                   the airframe.
-    %   Outputs:
-    %       T = vector of the required thrust. [N]
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %get density
-    [~ , ~ , ~ , rho] = atmosisa(altitude);
-    %compute thrust
-    T = 0.5*rho*UInf.^2*airframe.S*airframe.CD0 + ...
-        2.0*airframe.W^2./(pi*airframe.e*rho*UInf.^2*airframe.b^2);
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-end
-

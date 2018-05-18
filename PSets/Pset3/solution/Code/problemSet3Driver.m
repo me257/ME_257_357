@@ -37,7 +37,7 @@ HondaJet.airframe.WInitial = HondaJet.airframe.W;%[N]
 
 
 %define a structure containing the fluid
-fluid.gas = IdealGasMix('ndodecane_mech.xml');
+fluid.gas = Solution('ndodecane_mech.xml');
 fluid.fuel.name = 'nc12h26';
 fluid.fuel.nC = 12;
 fluid.fuel.nH = 26;
@@ -145,4 +145,3 @@ Ws(count:end)=[];
 mDotFs(count:end)=[];
 xs=ts*UInf;
 range = xs(end);
-disp(sprintf('The range of the HondaJet is %f km',range/1000))

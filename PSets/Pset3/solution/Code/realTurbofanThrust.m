@@ -17,7 +17,6 @@ function Thrust = realTurbofanThrust(UInf, altitude, engine, fluid)
     [T0 , a0 , ~ , rho0] = atmosisa(altitude);
     [~ , ~ , ~ , rhoSeaLevel] = atmosisa(0.0);
     mDot = engine.mDotSeaLevel*rho0/rhoSeaLevel;
-    mDot = mDot / (1+engine.bypassRatio);
     gamma = fluid.gamma;
     R = fluid.R;
     U0 = UInf;

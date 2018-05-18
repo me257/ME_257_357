@@ -15,9 +15,10 @@ function [T4,mDot4] = RQLCombustor(phi,UInf, altitude, engine, fluid)
     %set up the two zone combustor
     betaC = engine.combustorRerouteRatio;
     phi1 = phi*(1.0+betaC);
-    setCombustorInletConditions(phi1,UInf, altitude, engine, fluid);
+    setCombustorInletConditions(0.0,UInf, altitude, engine, fluid);
     hC2 = enthalpy_mass(fluid.gas);
     YC2 = massFractions(fluid.gas);
+    setCombustorInletConditions(phi1,UInf, altitude, engine, fluid);
     p3 = pressure(fluid.gas);
     
     %determine the mass flow
