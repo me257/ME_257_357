@@ -639,6 +639,32 @@ Implementation& Boeing 777-200/300\\\hline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The GEnx-engine (GE Next Generation) family is a derivation of the GE90-engine, and has been developed for the Boeing 787 Dreamliner. The GEnx will feature an advanced TAPS (twin annular premixed swirl) combustor that will produce a lower temperatures and more uniform gas stream temperature profile. The GEnx represents a giant leap forward in propulsion technology. The engine will use the latest generation materials and design processes to reduce weight, improve performance and lower maintenance. The GEnx will deliver 15\,\%  better specific fuel consumption than the engines it replaces. It is designed to stay on wing 30\,\%  longer, while using 30\,\% fewer parts, greatly reducing maintenance. The GEnx's emissions will be as much as 95\,\%  below current regulatory limits, ensuring clean compliance for years to come, and it will be the quietest, most passenger-friendly commercial engine ever produced. All of the these improvements are thanks to the incorporation of advanced and proven technologies from other engine families and on-going R\&D programs. Like lightweight, durable composite materials and specialized coatings. An innovative, clean-burning combustor, a counter-rotating architecture, and a fan module that's virtually maintenance free.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Rolls-Royce AE 3007:}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The Rolls-Royce AE 3007 is a high-bypass turbofan engine produced by Rolls-Royce North America, sharing a common core with the Rolls-Royce T406 (AE 1107) and AE 2100. The AE 3007 is a direct drive turbofan engine with a single stage fan, a 14-stage axial compressor with 6 stages of variable vanes including inlet guide vanes, an annular combustor, a two-stage high pressure turbine and a 3-stage low pressure turbine. The accessory gearbox is mounted at its bottom and two single channel FADEC units are mounted in the aircraft. It has fore and aft mounting provisions for underwing pylon or aft fuselage installation.
+%==============================================================
+\begin{table}[!htb!]
+  \centering
+\begin{tabular}{|p{0.25\textwidth}|p{0.7\textwidth}|}\hline
+Dimensions & Fan tip diameter: 38.5 in, Length: 115.08 in\\
+Takeoff thrust & 6,442--7,042 lb (AE 3007C) 7,580--9,440 lb (AE 3007A)\\
+Bypass ratio & 5\\
+Overall pressure ratio& 23\\
+Implementation& Cessna Citation X,  Embraer ERJ 145 family, RQ-4 Global Hawk/MQ-4C Triton\\\hline
+\end{tabular}
+  \caption{\label{TAB_JT9D}Engine characteristics of PW-JT9D engine.}
+\end{table}
+%==============================================================
+
+%==============================================================
+\begin{figure}[!htb!]
+ \centering
+    {\includegraphics[width=0.75\textwidth, clip=, keepaspectratio]{rr-ae-3007}}
+    \caption{\label{FIG_AE3007}Cutaway of AE 3007 (source: \url{www.rolls-royce.com}).}
+\end{figure}
+%==============================================================
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Combustion and Combustor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2071,7 +2097,47 @@ where $V_B = r \Omega$. To achieve constant stagnation enthalpy, we require that
 \end{equation}
 Issue with this is that it requires large blade twist. To reduce the blade-twist angle, we can invoke $r \Delta U_\theta$ to be constant instead of $r U_\theta$, which results in symmetric velocity triangle.
 
-The distribution of angular momentum is a design choice:
+To further analyze the vortex design of the compressor, here we define the degree of reaction as the fraction of static enthalpy rise across the stage that is accomplished by the rotor, which is:
+\begin{equation}
+	^\circ R = \frac{h_2 - h_1}{h_3 - h_1},
+\end{equation}
+with the labeling of stages shown in~\cref{fig:compressor_stages}.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{compressor_stages}
+	\caption{Schematic of a single compressor stage with the inlet guide vane (IGV) from stage 0 to 1, rotor from stage 1 to 2, and stator from stage 2 to 3.}
+	\label{fig:compressor_stages}
+\end{figure}
+Note that there is no work done by the stator across stages $2$ and $3$ ($h_{02} = h_{03}$) but it works as a diffusor after which the velocity reduces and temperature increases.
+
+Assuming that the compressor stages are repeated, i.e. $U_1 = U_3$, the degree of reaction can be simplified as:
+\begin{align}
+	^\circ R &= \frac{h_{02} - h_{01} - \frac{1}{2}\left(U_2^2 - U_1^2\right)}{h_{03} - h_{01} - \frac{1}{2}\left(U_3^2 - U_1^2\right)} \nonumber \\
+			 &= 1 - \frac{U_2^2 - U_1^2}{2(h_{02} - h_{03})} \nonumber \\
+			 &= 1 - \frac{U_x^2 + U_{\theta,2}^2 - U_x^2 - U_{\theta,1}^2}{2 V_B (U_{\theta,2} - U_{\theta, 1})} \nonumber \\
+			 &= 1 - \frac{U_{\theta, 2} + U_{\theta, 1}}{2 V_B}.
+\end{align}
+
+With this, the general stage vortex design (with IGV) takes the form:
+\begin{align}
+	r U_{\theta,1} &= r U_{\theta,3} = -b + a r^n, \\
+	r U_{\theta,2} &= b + a r^n.
+\end{align}
+The degree of reaction is then:
+\begin{equation}
+	^\circ R = 1 - \frac{U_{\theta,2} + U_{\theta,1}}{2 \Omega r} = 1 - \frac{a r^{n-2}}{2\Omega}.
+\end{equation}
+For $n=2$, the degree of reaction is constant; $n>2$ the degree of reaction deceases along the span; $n<2$ the degree of reaction increases along the span.
+
+Without the IGV ($U_{\theta,1} = U_{\theta,3} = 0$), two designs are commonly used which are:
+\begin{itemize}
+	\item Free vortex $rU_{\theta,2}=a$ (The flow field is a potential flow.)
+	\item Forced vortex $rU_{\theta,2}=ar^2$ (The rotor induced swirl increases linearly with the radius, i.e. fluid experiencing a solid body rotation. This relies on the stator to remove the swirls induced by the rotor.)
+\end{itemize}
+
+Note that the general stage vortex design is a combination of solid body rotation (forced vortex) and a free-vortex swirl distribution.
+
+Here is a summary of the vortex design choices:
 \begin{itemizePacked}
 \item Free vortex: $rU_\theta = a$,
 \item Forced vortex: $rU_\theta = a r^2$,
