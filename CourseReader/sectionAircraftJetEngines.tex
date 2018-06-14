@@ -2146,6 +2146,107 @@ Here is a summary of the vortex design choices:
 \end{itemizePacked}
 where $a > 0$ and $b$ are constants.
 
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+        Examples for the four vortex designs:
+		
+		From radial equilibrium:
+		\begin{align}
+			F_r = -r \frac{dp}{dr} dr d\theta dx \nonumber \\
+			    = -r \rho \frac{U_{\theta}^2}{r} dr d\theta dx \nonumber \\
+				= -\rho \frac{\left(r U_{\theta}\right)^2}{r^2} dr d\theta dx.
+		\end{align}
+		where $dp/dr=\rho U_{\theta}^2/r$. Integrate over the radial and azimuthal direction:
+		\begin{align}
+			F_r = \int_{r_h}^{r_t}\int_{0}^{2\pi} -\rho \frac{\left(r U_{\theta}\right)^2}{r^2} dr d\theta dx \nonumber \\
+			    = -2\pi\rho \int_{r_h}^{r_t}\frac{\left(r U_{\theta}\right)^2}{r^2} dr dx.
+		\end{align}
+		Therefore, for each of the four vortex designs:
+		\begin{itemize}
+			\item Free vortex
+			
+			\begin{align}
+				F_r &= -2\pi\rho \int_{r_h}^{r_t} \frac{a^2}{r^2} dr dx\nonumber \\
+				    &= \frac{2\pi\rho a^2 dx}{r}|_{r_h}^{r_t} \nonumber \\
+					&= 2\pi\rho a^2 (\frac{1}{r_t} - \frac{1}{r_h}) dx. \label{eq:free_vortex_eg}
+			\end{align}
+			
+			\item Forced vortex
+			
+			\begin{align}
+				F_r &= -2\pi\rho \int_{r_h}^{r_t}\frac{a^2 r^4}{r^2} dr dx \nonumber \\
+				    &= -\frac{2}{3}\pi\rho a^2 r^3 dx |_{r_h}^{r_t} \nonumber \\
+					&= -\frac{2}{3}\pi\rho a^2 (r_t^3 - r_h^3) dx. \label{eq:forced_vortex_eg}
+			\end{align}
+		\end{itemize}
+    }%
+}			
+			\newpage
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+		\begin{itemize}
+				
+			\item Exponential
+			
+			\begin{align}
+				F_r &= -2\pi\rho \int_{r_h}^{r_t} \frac{a^2 r^2 + 2abr +b^2}{r^2} dr dx \nonumber \\
+				    &= -2\pi\rho (a^2 r + 2ab\ln r - \frac{b^2}{r}) dx|_{r_h}^{r_t} \nonumber \\
+					&= -2\pi\rho \left[ (r_t - r_h)a^2 + 2\ln(r_t/r_h)ab - (1/r_t - 1/r_h)b^2\right] dx.  \label{eq:exponential_eg}
+			\end{align}
+			
+			\item Constant reaction
+			
+			\begin{align}
+				F_r &= -2\pi\rho \int_{r_h}^{r_t} \frac{a^2 r^4 + 2abr^2 + b^2}{r^2}dr dx \nonumber \\
+				    &= -2\pi\rho \left(\frac{a^2}{3}r^3 + 2abr - \frac{b^2}{r} \right) dx |_{r_h}^{r_t} \nonumber \\
+					&= -2\pi\rho \left[\frac{r_t^3 - r_h^3}{3} a^2 + 2(r_t - r_h)ab - (1/r_t - 1/r_h)b^2\right] dx.  \label{eq:const_reaction_eg}
+			\end{align}
+		\end{itemize}
+		
+		Assume the centrifugal force for the four designs are the same, from the free vortex design we have:
+		\begin{align}
+			a_\text{free vortex} &= r_h U_{\theta, h} \nonumber \\
+				&= r_h (r_h \Omega - u_x \tan \beta_{1,h}),
+		\end{align}
+		and the centrifugal force is computed using~\cref{eq:free_vortex_eg}. Substituting $F_r$ into~\cref{eq:forced_vortex_eg,eq:exponential_eg,eq:const_reaction_eg}, the parameters $a$ and $b$ are obtained. The orientation of the blade for each vortex design is then computed as:
+		\begin{equation}
+			\beta_1(r) = \tan^{-1}\left(\frac{r\Omega - r U_\theta /r}{u_x}\right).
+		\end{equation}
+		Assume $u_x = 325$ m/s, $V_{B,m} = 200$ m/s, $r_m = 0.5$ m, $r_h/r_t = 0.33$, $\beta_{1,h} = 5^\circ$, $\beta_1$ for each vortex design is shown in~\cref{fig:vortex_design_eg}. The CAD drawings for the compressor blades with the four vortex designs obtained in this example are shown in~\cref{fig:vortex_design_CAD}.
+
+	}%
+}		
+\begin{figure}[!htb!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{vortex_design_eg}
+	\caption{Example of vortex designs.}
+	\label{fig:vortex_design_eg}
+\end{figure}
+
+\begin{figure}[!htb!]
+	\centering
+	\subfigure[Free Vortex] {
+		\includegraphics[width=0.45\textwidth]{freeVortex.JPG}
+		\label{fig:freeVortex_CAD}
+	}
+	\subfigure[Forced Vortex] {
+		\includegraphics[width=0.45\textwidth]{forcedVortex.JPG}
+		\label{fig:forcedVortex_CAD}
+	}
+	\subfigure[Constant Reaction] {
+		\includegraphics[width=0.45\textwidth]{constReaction.JPG}
+		\label{fig:constReaction_CAD}
+	}
+	\subfigure[Exponential] {
+		\includegraphics[width=0.45\textwidth]{exponential.JPG}
+		\label{fig:exponential_CAD}
+	}
+	\caption{CAD drawings for the compressor blade following the vortex designs in the example.}
+	\label{fig:vortex_design_CAD}
+\end{figure}
+		
+
 From entropy conservation (second law), we have
 \begin{equation}
   T \f{ds}{dr} = \f{dh}{dr} - \f{1}{\rho} \f{dp}{dr}\,.

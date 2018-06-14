@@ -2,9 +2,6 @@
 %  ME357 Spring 2017
 %  Final Project
 %  4. Compressor-Turbine Matching and Operating Line
-%
-%  Rui Xu (ruixu@stanford.edu)
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear all

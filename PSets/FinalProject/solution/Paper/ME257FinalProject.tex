@@ -109,9 +109,9 @@
 %----------------------------------------------------------------------------------------
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-\section{Part 1 Turbine Stator-Rotor Analysis}
+\section{Part 1 Turbine Stator-Rotor Analysis [20 pts]}
 \begin{itemize}
-	\item[a)]
+	\item[a)[3 pts]]
 	The velocity triangles are shown in Figure~\ref{fig:stator_rotor}.
 	\begin{figure}[H]
 		\centering
@@ -120,7 +120,7 @@
 		\label{fig:stator_rotor}
 	\end{figure}
 	
-	\item[b)]
+	\item[b)[5 pts]]
 	Note that $u_{\theta,b} = u_x \tan \alpha_b$ and $u_{\theta,c} = U - u_x \tan \beta_c$, the work extracted for a single stage is:
 	\begin{align}
 		\Delta h_0 &= h_{0a} - h_{0c} \nonumber \\
@@ -136,7 +136,7 @@
 								  &= \left(\gamma - 1\right)\frac{U}{\sqrt{\gamma R T_{0a}}} \left[ \frac{u_x}{\sqrt{\gamma R T_{0a}}} \left(\tan \alpha_b + \tan \beta_c\right) - \frac{U}{\sqrt{\gamma R T_{0a}}}\right].
 	\end{align}
 	
-	\item[c)]
+	\item[c)[5 pts]]
 	Stage efficiency for single turbine stage is:
 	\begin{equation}
 		\eta_\text{st} = \frac{h_{0a} - h_{0c}}{h_{0a} - h_{0cs}} = \frac{\frac{T_{0cs}}{T_{0a}}-1}{\frac{T_{0c}}{T_{0a}}-1}.
@@ -171,14 +171,14 @@
 					  &= \frac{\left[\left(k - 1 \right)U\Delta u_\theta \right]/{C_p T_{01}}}{1 - \prod_{k = 1}^{n} \left[1 - \frac{1}{\eta_\text{st}}\frac{U\Delta u_\theta}{C_p T_{01}\left(1 - (k-1)\frac{U\Delta u_\theta}{C_p T_{01}}\right)}\right]}.
 	\end{align}
 	
-	\item[d)]
+	\item[d)[7 pts]]
 	See solution code.
 	
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-\section{Part 2 Turbine Design}
+\section{Part 2 Turbine Design [30 pts]}
 \begin{itemize}
-	\item[e)]
+	\item[e)[5 pts]]
 	The mechanical constraint is that the compressor and the turbine has the same angular velocity. From the compressor:
 	\begin{equation}
 		\omega = \frac{U_c}{\overline{r}_c} = \frac{310}{0.115} = 2695.65\text{ s}^{-1}.
@@ -188,7 +188,7 @@
 		U_t = \omega \overline{r}_t = 2195.65\text{ s}^{-1}\times 0.08 = 215.65\text{m/s}.
 	\end{equation}
 	
-	\item[f)]
+	\item[f)[5 pts]]
 	Ignoring the fuel-air ratio when using mass balance between HPC and HPT, we have $\dot{m}_t \approx \dot{m}_\text{core}=2.825$ kg/s. When choked at the turbine inlet, i.e. $M_4 = 1$, $f(M_4=1)=A_4/A^*_4=1$. Note that $P_{04} = P_{03} = \pi_c P_{02.5}=12P_{02.5} = 988.8kPa$, using the mass flow rate equation provided, $A_4$ can be computed as:
 	\begin{equation}
 		A_4 = \dot{m}_t \frac{\sqrt{\gamma R T_{04}}}{P_{04}f(M_4)}\frac{1}{\gamma}\left( \frac{\gamma + 1}{2}\right)^{\frac{\gamma + 1}{2\left( \gamma - 1\right)}} = 2.827\times 10^{-3}\text{ m}^2.
@@ -197,7 +197,7 @@
 	
 	Besides $\alpha_b$ and $\beta_c$, we also need to know the axial velocity $u_x$, the stage efficiency, and the number of stages in the turbine.
 	
-	\item[g)]
+	\item[g)[5 pts]]
 	From $h_0 = h + (1/2) u^2$, $h = C_p T$, $C_p = \gamma R/(\gamma - 1)$, $a = \sqrt{\gamma R T}$, and $M = u / a$, we have:
 	\begin{equation}
 		\frac{T_0}{T} = 1 + \left(\frac{\gamma - 1}{2}\right) M^2.
@@ -208,7 +208,7 @@
 		\label{eq:u_M}
 	\end{equation}
 	
-	\item[h)]
+	\item[h)[5 pts]]
 	Desired work map is shown in Figure~\ref{fig:p2h}.
 	\begin{figure}[H]
 		\centering
@@ -217,18 +217,18 @@
 		\label{fig:p2h}
 	\end{figure}
 	
-	\item[i)]
+	\item[i)[5 pts]]
 	From the desired work contour, it is found that the range of angles is reasonable. Theoretically, higher turning angles can be achieved in turbines compared to in compressors due to favorable pressure gradient. Therefore, flow seperation is less likely to happen in the turbine and one stage is enough for the HPT design.
 	
-	\item[j)]
+	\item[j)[5 pts]]
 	The design point of $\alpha_b = 60^\circ$ and $\beta_c = 45^\circ$ is shown in Figure~\ref{fig:p2h} by the red circle. The turbine work is higher than the target work from HPC ($2.17\times 10^5$ J/kg). Therefore, the angles proposed in the presented design is satisfactory.
 	
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-\section{Part 3 Turbine Map}		
+\section{Part 3 Turbine Map [20 pts]}		
 \begin{itemize}
-	\item[a)]
+	\item[a) [7 pts]]
 		\begin{itemize}
 			\item[(1)] Get $P_\text{t, ratio}$, $\eta_\text{t}$, $T_\text{out}$, and $W_\text{out}$ from Part 1;
 			\item[(2)] Compute $M_{04}$ using Eq.~\ref{eq:u_M} as:
@@ -239,7 +239,7 @@
 			\item[(4)] Compute $1/f(M_{04})$.
 		\end{itemize}
 
-	\item[b)]
+	\item[b) [8 pts]]
 	The initial turbine map is shown in Figure~\ref{fig:p3b}.
 	\begin{figure}[H]
 		\centering
@@ -248,20 +248,20 @@
 		\label{fig:p3b}
 	\end{figure}
 	
-	\item[c)]
-	The consolidated turbine map is shown in Figure~\ref{fig:p3b}.
+	\item[c) [5 pts]]
+	The consolidated turbine map is shown in Figure~\ref{fig:p3c}.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.6\textwidth]{p3c}
 		\caption{Consolidated turbine map.}
-		\label{fig:p3b}
+		\label{fig:p3c}
 	\end{figure}
 		
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Part 4 Compressor-Turbine Matching and Operating Line}		
+\section{Part 4 Compressor-Turbine Matching and Operating Line [30 pts]}		
 \begin{itemize}
-	\item[a)]
+	\item[a)[7 pts]]
 		\begin{itemize}
 			\item[(1)] Compute the compressor map;
 			\item[(2)] Compute the turbine map;
@@ -278,11 +278,11 @@
 			\item[(13)] Check if $\dot{m}_\text{compressor}(1+f)$ is equal to $\dot{m}_\text{turbine}$. If yes, go to step (3) and march to the next ratating speed $N$; if not, return to (4) and guess another axial velocity in the compressor $u_{x,c}$.
 		\end{itemize}
 		Note that the variable for iteration is the axial velocity in the compressor $u_{x,c}$. The objective function is the difference between $\dot{m}_\text{compressor}(1+f)$ and $\dot{m}_\text{turbine}$.
-	\item[b) \& c)]
+	\item[b)[8 pts] \& c)[8 pts]]
 	See solution code.
 		
-	\item[d)]
-	The compressor and turbine maps are shown in Figure~\ref{fig:p4d1,fig:p4d2} respectively. The operating line is shown by the red dashed lines one each plot.
+	\item[d)[7 pts]]
+	The compressor and turbine maps are shown in Figure~\ref{fig:p4d1} and~\ref{fig:p4d2} respectively. The operating line is shown by the red dashed lines one each plot.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.6\textwidth]{p4d1}
